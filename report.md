@@ -2,7 +2,7 @@
 
 Name: Ebelechukwu Umezude
 
-GitHub repository: **REPLACE_WITH_YOUR_ACTUAL_GITHUB_REPOSITORY_URL**
+GitHub repository: https://github.com/ebyumezude/decision-tree-from-scratch
 
 PyPI package: **NOT PUBLISHED YET — replace with the actual public PyPI URL after publishing**
 
