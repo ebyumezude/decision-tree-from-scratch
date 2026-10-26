@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+PUBLISHING.md
+README.md
+pyproject.toml
+report.md
+examples/tennis.csv
+examples/tennis_demo.py
+src/ebele_entropy_tree.egg-info/PKG-INFO
+src/ebele_entropy_tree.egg-info/SOURCES.txt
+src/ebele_entropy_tree.egg-info/dependency_links.txt
+src/ebele_entropy_tree.egg-info/top_level.txt
+src/ebele_tree/__init__.py
+src/ebele_tree/tree.py
+tests/test_tree.py
