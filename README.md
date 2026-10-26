@@ -1,1 +1,80 @@
-# decision-tree-from-scratch
+# Entropy decision tree from scratch
+
+Educational implementation of ID3 for categorical data. The learning algorithm
+uses only the Python standard library: no scikit-learn decision tree is used.
+Prepared with AI assistance; review the code and report before submission.
+
+## Install locally and run
+
+Open a terminal in this project folder (the folder containing pyproject.toml):
+
+```bash
+python3 -m pip install -e .
+python3 examples/tennis_demo.py
+python3 -m unittest discover -s tests -v
+```
+
+Open `tree.svg` in your browser for a graphical display. The SVG is generated
+from the learned tree, not hard-coded. `model.display()` also prints the rules.
+
+## Use the package
+
+```python
+from ebele_tree import DecisionTreeClassifier
+X = [{"Outlook": "Sunny"}, {"Outlook": "Rain"}, {"Outlook": "Overcast"}]
+y = ["No", "Yes", "Yes"]
+model = DecisionTreeClassifier(max_depth=2).fit(X, y)
+print(model.predict([{"Outlook": "Sunny"}]))
+model.display()
+model.export_svg("my_tree.svg")
+```
+
+In a notebook, a pandas DataFrame can be converted with
+`X.to_dict(orient="records")`; labels can be passed as `y.tolist()`.
+To display the exported SVG in a notebook:
+
+```python
+from IPython.display import SVG, display
+model.export_svg("tree.svg")
+display(SVG(filename="tree.svg"))
+```
+
+## How learning works
+
+1. Count the target labels and calculate H(S) = -sum(p * log2(p)).
+2. For each feature, group rows by category and calculate the weighted child entropy.
+3. Gain = parent entropy minus weighted child entropy.
+4. Choose the feature with the largest gain.
+5. Repeat separately within each branch, removing the selected feature.
+6. Stop at a pure node, no useful gain, no remaining feature, or a size limit.
+7. A stopped node predicts its majority class. Ties use first appearance order.
+
+`max_depth` controls depth (root depth is 0). `min_samples_split` controls how
+many examples are required before splitting. `min_gain` controls the minimum
+useful gain. A category unseen during fitting uses the current node's majority.
+
+## Tennis example
+
+The 14 rows reproduce the lecture's Play Tennis example. `Day` is excluded as
+an identifier. Categories are used directly; no numeric encoding is needed.
+
+| Feature | Root information gain |
+|---|---:|
+| Outlook | 0.246750 |
+| Temperature | 0.029223 |
+| Humidity | 0.151836 |
+| Wind | 0.048127 |
+
+The learned tree starts with Outlook; Sunny uses Humidity and Rain uses Wind.
+Overcast immediately predicts Yes. With max_depth=2, training accuracy is 1.0.
+That is a training demonstration, not evidence of perfect generalisation.
+
+## Scope and limitations
+
+Categorical, hashable, nonmissing inputs only. Numeric values are treated as
+discrete categories; continuous threshold splits are not implemented. This is
+an educational implementation, not an efficient model for the large irrigation
+dataset. Graphical boxes are sized for short labels such as the tennis example.
+
+See PUBLISHING.md for GitHub and PyPI instructions. The package name
+`ebele-entropy-tree` is provisional: availability has not been checked.

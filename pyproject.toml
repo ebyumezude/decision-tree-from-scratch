@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ebele-entropy-tree"
+version = "0.1.0"
+description = "An educational categorical ID3 decision tree built from scratch"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "Ebelechukwu Umezude"}]
+license = "MIT"
+license-files = ["LICENSE"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

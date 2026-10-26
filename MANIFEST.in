@@ -1,0 +1,3 @@
+include README.md LICENSE report.md PUBLISHING.md
+recursive-include examples *.py *.csv
+recursive-include tests *.py
