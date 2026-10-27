@@ -4,7 +4,7 @@ Name: Ebelechukwu Umezude
 
 GitHub repository: https://github.com/ebyumezude/decision-tree-from-scratch
 
-PyPI package: **NOT PUBLISHED YET — replace with the actual public PyPI URL after publishing**
+PyPI package: https://pypi.org/project/ebele-entropy-tree/0.1.0/
 
 ## Objective
 
